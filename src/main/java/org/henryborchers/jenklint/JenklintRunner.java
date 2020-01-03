@@ -1,3 +1,5 @@
+package org.henryborchers.jenklint;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -21,10 +23,10 @@ public class JenklintRunner {
             BufferedReader stderor = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             String line;
             while ((line = reader.readLine()) != null){
-                output.append(line + "\n");
+                output.append(line).append("\n");
             }
             while ((line = stderor.readLine()) != null){
-                output.append(line + "\n");
+                output.append(line).append("\n");
             }
 
             int exitVal = p.waitFor();

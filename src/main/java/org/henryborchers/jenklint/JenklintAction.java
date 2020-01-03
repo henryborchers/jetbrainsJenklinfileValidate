@@ -1,3 +1,5 @@
+package org.henryborchers.jenklint;
+
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;

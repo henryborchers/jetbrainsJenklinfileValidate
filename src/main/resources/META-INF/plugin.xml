@@ -1,12 +1,9 @@
 <idea-plugin>
     <id>org.example.myplugin</id>
-    <name>Plugin display name here</name>
+    <name>Jenklint</name>
     <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <description>>Validate Jenkins CI Declarative Pipeline</description>
 
-    <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
-    ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
@@ -19,7 +16,10 @@
     <actions>
         <group id="MyPlugin.SampleMenu" text="Jenkins" description="Jenkins Menu">
             <add-to-group group-id="MainMenu" anchor="last"/>
-            <action id="MyPlugin.Textboxes" class="JenklintAction" text="Validate" description="Validate Jenkinsfile" />
+            <action id="MyPlugin.Textboxes" class="org.henryborchers.jenklint.JenklintAction" text="Validate" description="Validate Jenkinsfile">
+                <keyboard-shortcut first-keystroke="control shift J" second-keystroke="V" keymap="$default"/>
+                <add-to-group group-id="ToolsMenu" anchor="first"/>
+            </action>
         </group>
         <!-- Add your actions here -->
     </actions>
