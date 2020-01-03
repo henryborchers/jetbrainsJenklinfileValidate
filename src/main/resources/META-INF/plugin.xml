@@ -1,0 +1,26 @@
+<idea-plugin>
+    <id>org.example.myplugin</id>
+    <name>Plugin display name here</name>
+    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+
+    <description><![CDATA[
+    Enter short description for your plugin here.<br>
+    <em>most HTML tags may be used</em>
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <group id="MyPlugin.SampleMenu" text="Jenkins" description="Jenkins Menu">
+            <add-to-group group-id="MainMenu" anchor="last"/>
+            <action id="MyPlugin.Textboxes" class="JenklintAction" text="Validate" description="Validate Jenkinsfile" />
+        </group>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
