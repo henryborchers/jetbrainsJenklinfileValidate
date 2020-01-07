@@ -10,13 +10,15 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+<!--&lt;!&ndash;        TODO create a forlm here likw the conan plugin https://github.com/conan-io/conan-clion-plugin/blob/dev/src/main/resources/META-INF/plugin.xml;-->
+        <projectConfigurable groupId="build" displayName="Jenkins" id="jenklint" instance="jenklint.ui.Config"/>
         <!-- Add your extensions here -->
     </extensions>
 
     <actions>
         <group id="MyPlugin.SampleMenu" text="Jenkins" description="Jenkins Menu">
             <add-to-group group-id="MainMenu" anchor="last"/>
-            <action id="MyPlugin.Textboxes" class="org.henryborchers.jenklint.JenklintAction" text="Validate" description="Validate Jenkinsfile">
+            <action id="MyPlugin.Textboxes" class="jenklint.JenklintAction" text="Validate" description="Validate Jenkinsfile">
                 <keyboard-shortcut first-keystroke="control shift J" second-keystroke="V" keymap="$default"/>
                 <add-to-group group-id="ToolsMenu" anchor="first"/>
             </action>
