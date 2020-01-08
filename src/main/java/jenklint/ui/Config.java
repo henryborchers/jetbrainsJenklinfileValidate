@@ -20,22 +20,23 @@ import java.awt.event.ActionListener;
 
 public class Config implements Configurable {
     private JPanel rootPanel;
-    private TextFieldWithBrowseButton jenklintCommandLabel;
+    private TextFieldWithBrowseButton jenklintCommand;
+    private JTextField textField1;
     public final String DISPLAY_NAME = "Jenklint";
     private Project project;
 
 //    public Config() {
     public Config(@NotNull Project project) {
         this.project = project;
-        jenklintCommandLabel.addActionListener(new ActionListener() {
+        jenklintCommand.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 System.out.println("something");
                 final FileChooserDescriptor d = FileChooserDescriptorFactory.createSingleFileDescriptor();
-                VirtualFile initialFile = StringUtil.isNotEmpty(jenklintCommandLabel.getText()) ? LocalFileSystem.getInstance().findFileByPath(jenklintCommandLabel.getText()) : null;
+                VirtualFile initialFile = StringUtil.isNotEmpty(jenklintCommand.getText()) ? LocalFileSystem.getInstance().findFileByPath(jenklintCommand.getText()) : null;
                 VirtualFile file = FileChooser.chooseFile(d, project, initialFile);
                 if (file != null) {
-                    jenklintCommandLabel.setText(file.getCanonicalPath());
+                    jenklintCommand.setText(file.getCanonicalPath());
                 }
             }
         });
