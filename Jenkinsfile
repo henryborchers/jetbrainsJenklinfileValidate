@@ -7,7 +7,7 @@ pipeline{
     stages{
         stage("build"){
             steps{
-                sh label: 'Building', script: 'gradle build -w --warning-mode all | tee gradle.build.log'
+                sh label: 'Building', script: 'gradle buildPlugin -w --warning-mode all | tee gradle.build.log'
             }
         }
         stage("Create JAR"){
