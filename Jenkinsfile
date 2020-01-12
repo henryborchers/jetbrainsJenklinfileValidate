@@ -7,7 +7,7 @@ pipeline{
     stages{
         stage("build"){
             steps{
-                sh label: 'Building jar', script: 'gradle jar --warning-mode all | tee gradle.log'
+                sh label: 'Building jar', script: 'gradle build --warning-mode all | tee gradle.log'
             }
             post{
                 always{
