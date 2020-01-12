@@ -17,16 +17,6 @@ pipeline{
                 }
             }
         }
-        stage("Create JAR"){
-            steps{
-                sh label: 'Building', script: 'gradle jar --warning-mode all | tee gradle.jar.log'
-            }
-            post{
-                always{
-                    sh "ls build/"
-                }
-            }
-        }
     }
     post{
         always{
