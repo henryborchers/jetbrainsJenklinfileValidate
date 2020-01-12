@@ -13,7 +13,7 @@ pipeline{
         stage("Verify Plugin"){
             steps{
                 catchError(buildResult: 'UNSTABLE') {
-                    sh label: 'Verify Plugin', script: 'gradle verifyPlugin -w --warning-mode all'
+                    sh label: 'Verify Plugin', script: 'gradle verifyPlugin -w  --stacktrace --warning-mode all'
                 }
             }
         }
