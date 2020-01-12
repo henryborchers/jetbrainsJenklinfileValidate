@@ -12,6 +12,7 @@ pipeline{
             post{
                 always{
                     sh "ls build"
+                    sh "gradle clean"
                 }
             }
         }
