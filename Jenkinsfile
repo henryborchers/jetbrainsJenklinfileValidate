@@ -17,6 +17,18 @@ pipeline{
                 }
             }
         }
+        stage("Checkstyle"){
+            steps{
+                catchError(buildResult: 'UNSTABLE') {
+                    sh label: 'Running Checkstyle', script: 'gradle checkstyleMain'
+                }
+            }
+            post{
+                always{
+                    recordIssues(tools: [checkStyle(pattern: 'build/reports/checkstyle/*.xml')])
+                }
+            }
+        }
     }
     post{
         always{
