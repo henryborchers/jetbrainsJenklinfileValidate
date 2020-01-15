@@ -18,6 +18,7 @@ public class JenklintRunner {
     }
     public String getResults(String projectPath){
         StringBuilder output = new StringBuilder();
+//        TODO: replace with process builder
         Runtime rt = Runtime.getRuntime();
         try {
             String jenklintCommand = JENKLINT_PATH + " " + JENKINS_URL;
