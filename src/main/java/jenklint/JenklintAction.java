@@ -20,17 +20,16 @@ public class JenklintAction extends AnAction{
     public void actionPerformed(AnActionEvent event) {
         Project project = event.getProject();
         String title = "Jenklint result";
-        PropertiesComponent instance = PropertiesComponent.getInstance(project);
+        PropertiesComponent instance = PropertiesComponent.getInstance();
         String jenklint = instance.getValue("jenklint.command_path");
-//        FileChooserDescriptor descriptor = new FileChooserDescriptor(true, false, false, false, false, false);
-
-//        final VirtualFile f = FileChooser.chooseFile(descriptor, project, null);
         if(jenklint == null){
             jenklint = "/home/henry/.local/bin/jenklint";
-            instance.setValue("jenklint.command_path",jenklint);
 
         }
-        JenklintRunner runner = new JenklintRunner(jenklint);
+        PropertiesComponent projectInstance = PropertiesComponent.getInstance(project);
+        String jenkinsURL = projectInstance.getValue("jenkinsURL");
+
+        JenklintRunner runner = new JenklintRunner(jenklint, jenkinsURL);
         String message = runner.getResults(getProjectRoot(project));
 
         Messages.showMessageDialog(project, message, title, Messages.getInformationIcon());
