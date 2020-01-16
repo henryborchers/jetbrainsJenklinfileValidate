@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 public class JenklintRunner {
     private final String jenklintPath;
     private final String jenkinsUrl;
+
     public JenklintRunner(String jenklintPath, String jenkinsUrl) {
         this.jenklintPath = jenklintPath;
         this.jenkinsUrl = jenkinsUrl;
