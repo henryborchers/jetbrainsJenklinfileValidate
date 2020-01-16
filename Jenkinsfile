@@ -5,6 +5,11 @@ pipeline{
         }
     }
     stages{
+        stage("Init"){
+            steps{
+                sh label: 'Initializing', script: 'gradle init'
+            }
+        }
         stage("Static Analysis"){
             parallel{
                 stage("Checkstyle"){
