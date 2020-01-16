@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 public class JenklintRunner {
     private final String JENKLINT_PATH;
     private final String JENKINS_URL;
-    public JenklintRunner(String jenklintPath, String jenkinsUrl){
+    public JenklintRunner(String jenklintPath, String jenkinsUrl) {
         JENKLINT_PATH = jenklintPath;
         JENKINS_URL = jenkinsUrl;
     }
@@ -16,7 +16,7 @@ public class JenklintRunner {
     public String getJenklintPath() {
         return JENKLINT_PATH;
     }
-    public String getResults(String projectPath){
+    public String getResults(String projectPath) {
         StringBuilder output = new StringBuilder();
 //        TODO: replace with process builder
         Runtime rt = Runtime.getRuntime();
@@ -26,10 +26,10 @@ public class JenklintRunner {
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
             BufferedReader stderor = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             String line;
-            while ((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null) {
                 output.append(line).append("\n");
             }
-            while ((line = stderor.readLine()) != null){
+            while ((line = stderor.readLine()) != null) {
                 output.append(line).append("\n");
             }
 
@@ -37,7 +37,7 @@ public class JenklintRunner {
         } catch (IOException e) {
             e.printStackTrace();
             return "Unable to run Jenklint. Check settings";
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
             return "Error Interrupted";
         }
