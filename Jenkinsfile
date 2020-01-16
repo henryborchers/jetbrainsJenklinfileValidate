@@ -7,12 +7,12 @@ pipeline{
     stages{
         stage("Init"){
             steps{
-                sh label: 'Configure', script: 'gradle --info'
+                sh label: 'Configure', script: 'gradle --info --warning-mode all'
             }
         }
         stage("build"){
             steps{
-                sh label: 'Building', script: 'gradle buildPlugin -w --warning-mode all | tee gradle.build.log'
+                sh label: 'Building', script: 'gradle buildPlugin  -w --warning-mode all | tee gradle.build.log'
             }
         }
         stage("Static Analysis"){
