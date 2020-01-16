@@ -17,6 +17,7 @@ public class JenklintRunner {
     public String getJenklintPath() {
         return jenklintPath;
     }
+
     public String getResults(String projectPath) {
         StringBuilder output = new StringBuilder();
         Runtime rt = Runtime.getRuntime();
