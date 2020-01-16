@@ -31,15 +31,15 @@ pipeline{
                         }
                     }
                 }
-                stage("FindBugs"){
+                stage("SpotBugs"){
                     steps{
                         catchError(buildResult: 'UNSTABLE') {
-                            sh label: 'Running Checkstyle', script: 'gradle findbugsMain'
+                            sh label: 'Running Spotbugs', script: 'gradle spotbugsMain'
                         }
                     }
                     post{
                         always{
-                            recordIssues(tools: [findBugs(pattern: 'build/reports/findbugs/*.xml')])
+                            recordIssues(tools: [spotBugs(pattern: 'build/reports/spotbugs/*.xml')])
                         }
                     }
                 }
