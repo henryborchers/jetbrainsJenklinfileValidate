@@ -7,7 +7,7 @@ pipeline{
     stages{
         stage("Init"){
             steps{
-                sh label: 'Initializing', script: 'gradle init'
+                sh label: 'Initializing', script: 'gradle init --info'
             }
         }
         stage("Static Analysis"){
