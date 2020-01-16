@@ -10,6 +10,11 @@ pipeline{
                 sh label: 'Configure', script: 'gradle --info'
             }
         }
+        stage("build"){
+            steps{
+                sh label: 'Building', script: 'gradle buildPlugin -w --warning-mode all | tee gradle.build.log'
+            }
+        }
         stage("Static Analysis"){
             parallel{
                 stage("Checkstyle"){
@@ -38,11 +43,7 @@ pipeline{
                 }
             }
         }
-        stage("build"){
-            steps{
-                sh label: 'Building', script: 'gradle buildPlugin -w --warning-mode all | tee gradle.build.log'
-            }
-        }
+
         stage("Verify Plugin"){
             steps{
                 catchError(buildResult: 'UNSTABLE') {
