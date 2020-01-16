@@ -27,9 +27,9 @@ public class JenklintAction extends AnAction {
 
         }
         PropertiesComponent projectInstance = PropertiesComponent.getInstance(project);
-        String jenkinsURL = projectInstance.getValue("jenkinsURL");
+        String jenkinsUrl = projectInstance.getValue("jenkinsURL");
 
-        JenklintRunner runner = new JenklintRunner(jenklint, jenkinsURL);
+        JenklintRunner runner = new JenklintRunner(jenklint, jenkinsUrl);
         String message = runner.getResults(getProjectRoot(project));
 
         Messages.showMessageDialog(project, message, title, Messages.getInformationIcon());
