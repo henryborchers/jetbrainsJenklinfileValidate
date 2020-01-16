@@ -17,18 +17,35 @@ pipeline{
                 }
             }
         }
-        stage("Checkstyle"){
-            steps{
-                catchError(buildResult: 'UNSTABLE') {
-                    sh label: 'Running Checkstyle', script: 'gradle checkstyleMain'
+        stage("Static Analysis"){
+            parallel{
+                stage("Checkstyle"){
+                    steps{
+                        catchError(buildResult: 'UNSTABLE') {
+                            sh label: 'Running Checkstyle', script: 'gradle checkstyleMain'
+                        }
+                    }
+                    post{
+                        always{
+                            recordIssues(tools: [checkStyle(pattern: 'build/reports/checkstyle/*.xml')])
+                        }
+                    }
                 }
-            }
-            post{
-                always{
-                    recordIssues(tools: [checkStyle(pattern: 'build/reports/checkstyle/*.xml')])
+                stage("FindBugs"){
+                    steps{
+                        catchError(buildResult: 'UNSTABLE') {
+                            sh label: 'Running Checkstyle', script: 'gradle findbugsMain'
+                        }
+                    }
+                    post{
+                        always{
+                            recordIssues(tools: [findBugs(pattern: 'build/reports/findbugs/*.xml')])
+                        }
+                    }
                 }
             }
         }
+
     }
     post{
         always{
