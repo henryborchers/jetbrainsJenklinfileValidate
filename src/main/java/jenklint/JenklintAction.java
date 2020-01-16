@@ -1,11 +1,11 @@
 package jenklint;
 
+import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
-import com.intellij.ide.util.PropertiesComponent;
 
 public class JenklintAction extends AnAction {
     private String getProjectRoot(Project project) {
