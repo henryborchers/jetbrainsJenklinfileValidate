@@ -56,9 +56,7 @@ pipeline{
     post{
         always{
             sh "gradle clean"
-            dir(".gradle"){
-                deleteDir()
-            }
+            deleteDir()
         }
     }
 }
