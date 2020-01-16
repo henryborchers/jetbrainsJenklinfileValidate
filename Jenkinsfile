@@ -21,7 +21,7 @@ pipeline{
             parallel{
                 stage("Checkstyle"){
                     steps{
-                        catchError(buildResult: 'UNSTABLE') {
+                        catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                             sh label: 'Running Checkstyle', script: 'gradle checkstyleMain'
                         }
                     }
