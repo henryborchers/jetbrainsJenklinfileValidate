@@ -33,7 +33,7 @@ pipeline{
                 }
                 stage("SpotBugs"){
                     steps{
-                        catchError(buildResult: 'UNSTABLE') {
+                        catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
                             sh label: 'Running Spotbugs', script: 'gradle spotbugsMain'
                         }
                     }
