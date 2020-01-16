@@ -86,6 +86,7 @@ public class Config implements Configurable {
     @Override
     public boolean isModified() {
         PropertiesComponent projectInstance = PropertiesComponent.getInstance(this.project);
+        PropertiesComponent defaultInstance = PropertiesComponent.getInstance();
         if (!jenkinsFile.getText().equals(projectInstance.getValue("jenkinsfile"))) {
             return true;
         }
@@ -94,7 +95,7 @@ public class Config implements Configurable {
             return true;
         }
 
-        if (!jenklintCommand.getText().equals(PropertiesComponent.getInstance().getValue("jenklint.command_path"))) {
+        if (!jenklintCommand.getText().equals(defaultInstance.getValue("jenklint.command_path"))) {
             return true;
         }
         return false;
