@@ -22,7 +22,7 @@ public class JenklintAction extends AnAction {
         String title = "Jenklint result";
         PropertiesComponent instance = PropertiesComponent.getInstance();
         String jenklint = instance.getValue("jenklint.command_path");
-        if(jenklint == null) {
+        if (jenklint == null) {
             jenklint = "/home/henry/.local/bin/jenklint";
 
         }

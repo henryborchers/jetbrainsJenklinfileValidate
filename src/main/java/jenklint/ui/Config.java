@@ -84,15 +84,15 @@ public class Config implements Configurable {
     @Override
     public boolean isModified() {
         PropertiesComponent projectInstance = PropertiesComponent.getInstance(this.project);
-        if (!jenkinsFile.getText().equals(projectInstance.getValue("jenkinsfile"))){
+        if (!jenkinsFile.getText().equals(projectInstance.getValue("jenkinsfile"))) {
             return true;
         }
 
-        if (!JenkinsURL.getText().equals(projectInstance.getValue("jenkinsURL"))){
+        if (!JenkinsURL.getText().equals(projectInstance.getValue("jenkinsURL"))) {
             return true;
         }
 
-        if (!jenklintCommand.getText().equals(PropertiesComponent.getInstance().getValue("jenklint.command_path"))){
+        if (!jenklintCommand.getText().equals(PropertiesComponent.getInstance().getValue("jenklint.command_path"))) {
             return true;
         }
         return false;
