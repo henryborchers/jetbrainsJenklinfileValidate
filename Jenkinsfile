@@ -7,7 +7,7 @@ pipeline{
     stages{
         stage("Init"){
             steps{
-                sh label: 'Initializing', script: 'gradle init --info'
+                sh label: 'Configure', script: 'gradle --info'
             }
         }
         stage("Static Analysis"){
@@ -56,6 +56,7 @@ pipeline{
     post{
         always{
             sh "gradle clean"
+            deleteDir()
         }
     }
 }
