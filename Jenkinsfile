@@ -1,7 +1,7 @@
 pipeline{
     agent {
         docker {
-            image 'gradle:6.0.1-jdk'
+            image 'gradle'
         }
     }
     stages{
@@ -20,7 +20,7 @@ pipeline{
                 stage("Checkstyle"){
                     steps{
                         catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                            sh label: 'Running Checkstyle', script: 'gradle checkstyleMain'
+                            sh label: 'Running Checkstyle', script: 'gradle checkstyleMain --warning-mode all'
                         }
                     }
                     post{
@@ -32,7 +32,7 @@ pipeline{
                 stage("SpotBugs"){
                     steps{
                         catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
-                            sh label: 'Running Spotbugs', script: 'gradle spotbugsMain'
+                            sh label: 'Running Spotbugs', script: 'gradle spotbugsMain --warning-mode all'
                         }
                     }
                     post{
