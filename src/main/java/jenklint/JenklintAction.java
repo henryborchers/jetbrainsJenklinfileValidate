@@ -1,19 +1,22 @@
 package jenklint;
 
-import com.intellij.openapi.actionSystem.*;
+import com.intellij.ide.util.PropertiesComponent;
+import com.intellij.openapi.actionSystem.AnAction;
+import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
-import com.intellij.ide.util.PropertiesComponent;
 
-public class JenklintAction extends AnAction{
-    private String getProjectRoot(Project project){
+public class JenklintAction extends AnAction {
+
+    private String getProjectRoot(Project project) {
         ModuleManager manager = ModuleManager.getInstance(project);
         Module module = manager.getModules()[0];
         return module.getProject().getBasePath();
     }
-    public JenklintAction(){
+
+    public JenklintAction() {
         super("Validate Jenkinsfile");
     }
 
@@ -22,14 +25,14 @@ public class JenklintAction extends AnAction{
         String title = "Jenklint result";
         PropertiesComponent instance = PropertiesComponent.getInstance();
         String jenklint = instance.getValue("jenklint.command_path");
-        if(jenklint == null){
+        if (jenklint == null) {
             jenklint = "/home/henry/.local/bin/jenklint";
 
         }
         PropertiesComponent projectInstance = PropertiesComponent.getInstance(project);
-        String jenkinsURL = projectInstance.getValue("jenkinsURL");
+        String jenkinsUrl = projectInstance.getValue("jenkinsURL");
 
-        JenklintRunner runner = new JenklintRunner(jenklint, jenkinsURL);
+        JenklintRunner runner = new JenklintRunner(jenklint, jenkinsUrl);
         String message = runner.getResults(getProjectRoot(project));
 
         Messages.showMessageDialog(project, message, title, Messages.getInformationIcon());
