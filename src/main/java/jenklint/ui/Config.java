@@ -21,16 +21,16 @@ import org.jetbrains.annotations.Nullable;
 public class Config implements Configurable {
     private JPanel rootPanel;
     private TextFieldWithBrowseButton jenklintCommand;
-    private JTextField JenkinsURL;
+    private JTextField jenkinsUrl;
     private TextFieldWithBrowseButton jenkinsFile;
-    public final String DISPLAY_NAME = "Jenklint";
+    public final String displayName = "Jenklint";
     private Project project;
 
     //    public Config() {
     public Config(@NotNull Project project) {
         this.project = project;
         jenkinsFile.setText(PropertiesComponent.getInstance(project).getValue("jenkinsfile"));
-        JenkinsURL.setText(PropertiesComponent.getInstance(project).getValue("jenkinsURL"));
+        jenkinsUrl.setText(PropertiesComponent.getInstance(project).getValue("jenkinsURL"));
         jenklintCommand.setText(PropertiesComponent.getInstance().getValue("jenklint.command_path"));
 
         jenklintCommand.addActionListener(new ActionListener() {
@@ -45,7 +45,7 @@ public class Config implements Configurable {
             }
         });
 
-        JenkinsURL.addActionListener(new ActionListener() {
+        jenkinsUrl.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 System.out.println("Selecting Jenkins URL");
@@ -72,7 +72,7 @@ public class Config implements Configurable {
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
     public String getDisplayName() {
-        return DISPLAY_NAME;
+        return displayName;
     }
 
     @Nullable
@@ -88,7 +88,7 @@ public class Config implements Configurable {
             return true;
         }
 
-        if (!JenkinsURL.getText().equals(projectInstance.getValue("jenkinsURL"))) {
+        if (!jenkinsUrl.getText().equals(projectInstance.getValue("jenkinsURL"))) {
             return true;
         }
 
@@ -102,6 +102,6 @@ public class Config implements Configurable {
     public void apply() throws ConfigurationException {
         PropertiesComponent.getInstance(project).setValue("jenkinsfile", jenkinsFile.getText());
         PropertiesComponent.getInstance().setValue("jenklint.command_path", jenklintCommand.getText());
-        PropertiesComponent.getInstance(project).setValue("jenkinsURL", JenkinsURL.getText());
+        PropertiesComponent.getInstance(project).setValue("jenkinsURL", jenkinsUrl.getText());
     }
 }
