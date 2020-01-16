@@ -5,16 +5,14 @@ pipeline{
         }
     }
     stages{
-        stage("build"){
+        stage("Init"){
             steps{
-                sh label: 'Building', script: 'gradle buildPlugin -w --warning-mode all | tee gradle.build.log'
+                sh label: 'Configure', script: 'gradle --info --warning-mode all'
             }
         }
-        stage("Verify Plugin"){
+        stage("build"){
             steps{
-                catchError(buildResult: 'UNSTABLE') {
-                    sh label: 'Verify Plugin', script: 'gradle verifyPlugin -w  --warning-mode all'
-                }
+                sh label: 'Building', script: 'gradle buildPlugin  -w --warning-mode all | tee gradle.build.log'
             }
         }
         stage("Static Analysis"){
@@ -22,7 +20,7 @@ pipeline{
                 stage("Checkstyle"){
                     steps{
                         catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                            sh label: 'Running Checkstyle', script: 'gradle checkstyleMain'
+                            sh label: 'Running Checkstyle', script: 'gradle checkstyleMain --warning-mode all'
                         }
                     }
                     post{
@@ -34,7 +32,7 @@ pipeline{
                 stage("SpotBugs"){
                     steps{
                         catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
-                            sh label: 'Running Spotbugs', script: 'gradle spotbugsMain'
+                            sh label: 'Running Spotbugs', script: 'gradle spotbugsMain --warning-mode all'
                         }
                     }
                     post{
@@ -45,6 +43,15 @@ pipeline{
                 }
             }
         }
+
+        stage("Verify Plugin"){
+            steps{
+                catchError(buildResult: 'UNSTABLE') {
+                    sh label: 'Verify Plugin', script: 'gradle verifyPlugin -w  --warning-mode all'
+                }
+            }
+        }
+
 
     }
     post{
