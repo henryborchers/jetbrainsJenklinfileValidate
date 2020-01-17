@@ -21,7 +21,6 @@ public class JenklintRunner {
 
     public String getResults(String projectPath) {
         StringBuilder output = new StringBuilder();
-        Runtime rt = Runtime.getRuntime();
         ProcessBuilder b = new ProcessBuilder(jenklintPath);
         Map<String, String> env = b.environment();
         env.put("JENKINS_URL", jenkinsUrl);
