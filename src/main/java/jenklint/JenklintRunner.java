@@ -21,6 +21,7 @@ public class JenklintRunner {
     public String getResults(String projectPath) {
         StringBuilder output = new StringBuilder();
         Runtime rt = Runtime.getRuntime();
+        // TODO: replace with ProcessBuilder b = new ProcessBuilder("C:\DoStuff.exe -arg1 -arg2");
         try {
             String jenklintCommand = jenklintPath + " " + jenkinsUrl;
             Process p = rt.exec(jenklintCommand, null, new File(projectPath));
