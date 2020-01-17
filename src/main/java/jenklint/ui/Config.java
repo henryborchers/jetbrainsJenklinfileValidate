@@ -25,7 +25,7 @@ public class Config implements Configurable {
     private TextFieldWithBrowseButton jenklintCommand;
     private JTextField jenkinsUrl;
     private TextFieldWithBrowseButton jenkinsFile;
-    public final static String DISPLAY_NAME = "Jenklint";
+    public static final String DISPLAY_NAME = "Jenklint";
     private Project project;
 
     //    public Config() {
