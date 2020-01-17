@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Map;
 
 public class JenklintRunner {
     private final String jenklintPath;
@@ -21,10 +22,16 @@ public class JenklintRunner {
     public String getResults(String projectPath) {
         StringBuilder output = new StringBuilder();
         Runtime rt = Runtime.getRuntime();
+        ProcessBuilder b = new ProcessBuilder(jenklintPath);
+        Map<String, String> env = b.environment();
+        env.put("JENKINS_URL", jenkinsUrl);
+
+        b.directory(new File(projectPath));
+
         // TODO: replace with ProcessBuilder b = new ProcessBuilder("C:\DoStuff.exe -arg1 -arg2");
         try {
-            String jenklintCommand = jenklintPath + " " + jenkinsUrl;
-            Process p = rt.exec(jenklintCommand, null, new File(projectPath));
+            Process p = b.start();
+
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
             BufferedReader stderor = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             String line;
