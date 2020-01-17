@@ -31,7 +31,8 @@ public class JenklintRunner {
         try {
             Process p = b.start();
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            InputStreamReader inputStreamReader = new InputStreamReader(p.getInputStream());
+            BufferedReader reader = new BufferedReader(inputStreamReader);
             BufferedReader stderor = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             String line;
             while ((line = reader.readLine()) != null) {
@@ -42,6 +43,7 @@ public class JenklintRunner {
             }
 
             p.waitFor();
+
         } catch (IOException e) {
             e.printStackTrace();
             return "Unable to run Jenklint. Check settings";
