@@ -34,7 +34,7 @@ public class JenklintRunner {
                 output.append(line).append("\n");
             }
 
-            int exitVal = p.waitFor();
+            p.waitFor();
         } catch (IOException e) {
             e.printStackTrace();
             return "Unable to run Jenklint. Check settings";
