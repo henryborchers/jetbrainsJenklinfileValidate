@@ -25,7 +25,7 @@ public class Config implements Configurable {
     private TextFieldWithBrowseButton jenklintCommand;
     private JTextField jenkinsUrl;
     private TextFieldWithBrowseButton jenkinsFile;
-    public final String displayName = "Jenklint";
+    public final static String DISPLAY_NAME = "Jenklint";
     private Project project;
 
     //    public Config() {
@@ -74,7 +74,7 @@ public class Config implements Configurable {
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
     public String getDisplayName() {
-        return displayName;
+        return DISPLAY_NAME;
     }
 
     @Nullable
