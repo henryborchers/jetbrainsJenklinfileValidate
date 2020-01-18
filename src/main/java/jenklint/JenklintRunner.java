@@ -35,7 +35,7 @@ public class JenklintRunner {
 
             inputStreamReader = new InputStreamReader(p.getInputStream(), StandardCharsets.US_ASCII);
             BufferedReader reader = new BufferedReader(inputStreamReader);
-            BufferedReader stderor = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+            BufferedReader stderor = new BufferedReader(new InputStreamReader(p.getErrorStream(), StandardCharsets.US_ASCII));
             String line;
             while ((line = reader.readLine()) != null) {
                 output.append(line).append("\n");
