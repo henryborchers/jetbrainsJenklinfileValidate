@@ -34,13 +34,11 @@ public class JenklintRunner {
             InputStreamReader inputStreamReader;
 
             inputStreamReader = new InputStreamReader(p.getInputStream(), StandardCharsets.US_ASCII);
-            BufferedReader stderor;
+            BufferedReader reader = new BufferedReader(inputStreamReader);
+            BufferedReader stderor = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             String line;
-            try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
-                stderor = new BufferedReader(new InputStreamReader(p.getErrorStream(), StandardCharsets.US_ASCII));
-                while ((line = reader.readLine()) != null) {
-                    output.append(line).append("\n");
-                }
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
             }
             while ((line = stderor.readLine()) != null) {
                 output.append(line).append("\n");
