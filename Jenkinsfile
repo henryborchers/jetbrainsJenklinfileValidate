@@ -7,12 +7,12 @@ pipeline{
     stages{
         stage("Init"){
             steps{
-                sh label: 'Configure', script: 'gradle --info --warning-mode all'
+                sh label: 'Configure', script: './gradlew --info --warning-mode all'
             }
         }
         stage("build"){
             steps{
-                sh label: 'Building', script: 'gradle buildPlugin  -w --warning-mode all | tee gradle.build.log'
+                sh label: 'Building', script: './gradlew buildPlugin  -w --warning-mode all | tee gradle.build.log'
             }
         }
         stage("Static Analysis"){
@@ -32,7 +32,7 @@ pipeline{
                 stage("SpotBugs"){
                     steps{
                         catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                            sh label: 'Running Spotbugs', script: 'gradle spotbugsMain --warning-mode all'
+                            sh label: 'Running Spotbugs', script: './gradlew spotbugsMain --warning-mode all'
                         }
                     }
                     post{
@@ -47,7 +47,7 @@ pipeline{
         stage("Verify Plugin"){
             steps{
                 catchError(buildResult: 'UNSTABLE') {
-                    sh label: 'Verify Plugin', script: 'gradle verifyPlugin -w  --warning-mode all'
+                    sh label: 'Verify Plugin', script: './gradlew verifyPlugin -w  --warning-mode all'
                 }
             }
         }
@@ -56,7 +56,7 @@ pipeline{
     }
     post{
         always{
-            sh "gradle clean"
+            sh "./gradlew clean"
         }
     }
 }
