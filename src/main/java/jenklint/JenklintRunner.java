@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 public class JenklintRunner {
     private final String jenklintPath;
@@ -20,21 +22,28 @@ public class JenklintRunner {
 
     public String getResults(String projectPath) {
         StringBuilder output = new StringBuilder();
-        Runtime rt = Runtime.getRuntime();
+        ProcessBuilder b = new ProcessBuilder(jenklintPath);
+        Map<String, String> env = b.environment();
+        env.put("JENKINS_URL", jenkinsUrl);
+
+        b.directory(new File(projectPath));
+
         try {
-            String jenklintCommand = jenklintPath + " " + jenkinsUrl;
-            Process p = rt.exec(jenklintCommand, null, new File(projectPath));
-            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            BufferedReader stderor = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line).append("\n");
-            }
-            while ((line = stderor.readLine()) != null) {
-                output.append(line).append("\n");
+            Process p = b.start();
+            InputStreamReader inputStreamReader = new InputStreamReader(p.getInputStream(), StandardCharsets.US_ASCII);
+            BufferedReader reader = new BufferedReader(inputStreamReader);
+            try {
+                while ((line = reader.readLine()) != null) {
+                    output.append(line).append("\n");
+                }
+
+            } finally {
+                reader.close();
             }
 
             p.waitFor();
+
         } catch (IOException e) {
             e.printStackTrace();
             return "Unable to run Jenklint. Check settings";
