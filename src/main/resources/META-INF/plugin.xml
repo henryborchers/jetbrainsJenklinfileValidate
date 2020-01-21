@@ -12,6 +12,7 @@
     <extensions defaultExtensionNs="com.intellij">
 <!--&lt;!&ndash;        TODO create a forlm here likw the conan plugin https://github.com/conan-io/conan-clion-plugin/blob/dev/src/main/resources/META-INF/plugin.xml;-->
         <projectConfigurable groupId="build" displayName="Jenkins" id="jenklint" instance="jenklint.ui.Config"/>
+        <toolWindow id="Jenkins" secondary="true" anchor="bottom" factoryClass="jenklint.ui.JenkinsToolWindowFactory"/>
         <!-- Add your extensions here -->
     </extensions>
 
