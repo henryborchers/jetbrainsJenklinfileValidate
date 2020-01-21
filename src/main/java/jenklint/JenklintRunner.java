@@ -28,25 +28,19 @@ public class JenklintRunner {
 
         b.directory(new File(projectPath));
 
-        // TODO: replace with ProcessBuilder b = new ProcessBuilder("C:\DoStuff.exe -arg1 -arg2");
         try {
             String line;
             Process p = b.start();
             InputStreamReader inputStreamReader = new InputStreamReader(p.getInputStream(), StandardCharsets.US_ASCII);
             BufferedReader reader = new BufferedReader(inputStreamReader);
-            try{
+            try {
                 while ((line = reader.readLine()) != null) {
                     output.append(line).append("\n");
                 }
 
             } finally {
-//                inputStreamReader.close();;
                 reader.close();
             }
-//            BufferedReader stderor = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-//            while ((line = stderor.readLine()) != null) {
-//                output.append(line).append("\n");
-//            }
 
             p.waitFor();
 
