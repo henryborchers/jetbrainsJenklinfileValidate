@@ -40,7 +40,7 @@ pipeline{
                 stage("Checkstyle"){
                     steps{
                         catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                            sh label: 'Running Checkstyle', script: 'gradle checkstyleMain --warning-mode all'
+                            sh label: 'Running Checkstyle', script: './gradlew checkstyleMain --warning-mode all'
                         }
                     }
                     post{
