@@ -5,12 +5,12 @@ pipeline{
         }
     }
     stages{
-        stage("Init"){
+        stage("Configure"){
             steps{
                 sh label: 'Configure', script: './gradlew --info --warning-mode all'
             }
         }
-        stage("build"){
+        stage("Build"){
             steps{
                 sh label: 'Building', script: './gradlew buildPlugin  -w --warning-mode all | tee gradle.build.log'
             }
