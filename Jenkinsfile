@@ -25,6 +25,16 @@ pipeline{
 
             }
         }
+        stage("Run Tests"){
+            steps{
+                sh label: 'Running tests', script: './gradlew test -w --warning-mode all '
+            }
+            post{
+                always{
+                    junit 'build/test-results/test/TEST*.xml'
+                }
+            }
+        }
         stage("Static Analysis"){
             parallel{
                 stage("Checkstyle"){

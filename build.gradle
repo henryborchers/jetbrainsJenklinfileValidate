@@ -28,3 +28,9 @@ patchPluginXml {
       Parses python script to validate jenkinsfile.<br>
       """
 }
+test {
+    reports {
+        junitXml.enabled = true
+        html.enabled = false
+    }
+}
