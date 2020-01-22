@@ -22,7 +22,6 @@ pipeline{
                         sh label: 'Building Javadocs', script: './gradlew javadoc -w --warning-mode all '
                     }
                 }
-
             }
         }
         stage("Run Tests"){
@@ -63,7 +62,6 @@ pipeline{
                 }
             }
         }
-
         stage("Verify Plugin"){
             steps{
                 catchError(buildResult: 'UNSTABLE') {
@@ -71,8 +69,6 @@ pipeline{
                 }
             }
         }
-
-
     }
     post{
         always{
