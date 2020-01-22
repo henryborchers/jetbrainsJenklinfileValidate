@@ -11,8 +11,18 @@ pipeline{
             }
         }
         stage("Build"){
-            steps{
-                sh label: 'Building', script: './gradlew buildPlugin  -w --warning-mode all | tee gradle.build.log'
+            parallel{
+                stage("Build Plugin"){
+                    steps{
+                        sh label: 'Building plugin', script: './gradlew buildPlugin  -w --warning-mode all | tee gradle.build.log'
+                    }
+                }
+                stage("Build Javadocs"){
+                    steps{
+                        sh label: 'Building Javadocs', script: './gradlew javadoc -w --warning-mode all '
+                    }
+                }
+
             }
         }
         stage("Static Analysis"){
