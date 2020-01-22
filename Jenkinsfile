@@ -22,7 +22,16 @@ pipeline{
                         sh label: 'Building Javadocs', script: './gradlew javadoc -w --warning-mode all '
                     }
                 }
-
+            }
+        }
+        stage("Run Tests"){
+            steps{
+                sh label: 'Running tests', script: './gradlew test -w --warning-mode all '
+            }
+            post{
+                always{
+                    junit 'build/test-results/test/TEST*.xml'
+                }
             }
         }
         stage("Static Analysis"){
@@ -30,7 +39,7 @@ pipeline{
                 stage("Checkstyle"){
                     steps{
                         catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                            sh label: 'Running Checkstyle', script: 'gradle checkstyleMain --warning-mode all'
+                            sh label: 'Running Checkstyle', script: './gradlew checkstyleMain --warning-mode all'
                         }
                     }
                     post{
@@ -53,7 +62,6 @@ pipeline{
                 }
             }
         }
-
         stage("Verify Plugin"){
             steps{
                 catchError(buildResult: 'UNSTABLE') {
@@ -61,8 +69,6 @@ pipeline{
                 }
             }
         }
-
-
     }
     post{
         always{
