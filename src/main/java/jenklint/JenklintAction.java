@@ -17,7 +17,7 @@ public class JenklintAction extends AnAction {
     }
 
     public JenklintAction() {
-        super("Validate Jenkinsfile");
+        super("Run pyjenklint");
     }
 
     public void actionPerformed(AnActionEvent event) {

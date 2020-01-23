@@ -16,7 +16,7 @@
     </extensions>
 
     <actions>
-        <action id="JenkinsPlugin.pyjenklint" class="jenklint.JenklintAction" text="Validate" description="Validate Jenkinsfile" icon="AllIcons.Actions.Execute">
+        <action id="JenkinsPlugin.pyjenklint" class="jenklint.JenklintAction" text="Validate" description="Run pyjenklint" icon="AllIcons.Actions.Execute">
             <keyboard-shortcut first-keystroke="control shift J" second-keystroke="V" keymap="$default"/>
             <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>
