@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>org.example.myplugin</id>
+    <id>org.example.jenkinsplugin</id>
     <name>Jenklint</name>
     <vendor email="henryborchers@yahoo.com" url="https://github.com/henryborchers">HenryBorchers</vendor>
     <description>>Validate Jenkins CI Declarative Pipeline</description>
@@ -16,7 +16,7 @@
     </extensions>
 
     <actions>
-        <action id="MyPlugin.Textboxes" class="jenklint.JenklintAction" text="Validate" description="Validate Jenkinsfile" icon="AllIcons.Actions.Execute">
+        <action id="JenkinsPlugin.pyjenklint" class="jenklint.JenklintAction" text="Validate" description="Validate Jenkinsfile" icon="AllIcons.Actions.Execute">
             <keyboard-shortcut first-keystroke="control shift J" second-keystroke="V" keymap="$default"/>
             <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>

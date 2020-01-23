@@ -24,7 +24,7 @@ public class JenkinsToolWindowFactory implements ToolWindowFactory, DumbAware {
         SimpleToolWindowPanel filterPanel = new SimpleToolWindowPanel(false);
 
         ActionManager actionManager = ActionManager.getInstance();
-        defaultActionGroup.addAction(actionManager.getAction("MyPlugin.Textboxes"));
+        defaultActionGroup.addAction(actionManager.getAction("JenkinsPlugin.pyjenklint"));
 
         ActionToolbar actionToolbar = actionManager.createActionToolbar(ActionPlaces.CHANGES_VIEW_TOOLBAR, defaultActionGroup, false);
 
