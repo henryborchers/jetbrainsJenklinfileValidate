@@ -7,6 +7,7 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
+import org.jetbrains.annotations.NotNull;
 
 public class JenklintAction extends AnAction {
 
@@ -20,8 +21,8 @@ public class JenklintAction extends AnAction {
         super("Run pyjenklint");
     }
 
-    public void actionPerformed(AnActionEvent event) {
-        Project project = event.getProject();
+    public void actionPerformed(@NotNull AnActionEvent event) {
+        Project project = getEventProject(event);
         String title = "Jenklint result";
         PropertiesComponent instance = PropertiesComponent.getInstance();
         String jenklint = instance.getValue("jenklint.command_path");
