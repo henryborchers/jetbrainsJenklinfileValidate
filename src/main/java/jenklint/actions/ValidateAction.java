@@ -1,4 +1,4 @@
-package jenklint;
+package jenklint.actions;
 
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.actionSystem.AnAction;
@@ -7,6 +7,9 @@ import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.vfs.VirtualFile;
+import jenklint.JenkinsServer;
+import jenklint.JenkinsValidation;
+import jenklint.Jenkinsfile;
 import jenklint.ui.JenkinsToolWindow;
 import org.jetbrains.annotations.NotNull;
 

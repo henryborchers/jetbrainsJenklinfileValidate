@@ -1,4 +1,4 @@
-package jenklint;
+package jenklint.actions;
 
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.actionSystem.AnAction;
@@ -7,6 +7,7 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
+import jenklint.JenklintRunner;
 import org.jetbrains.annotations.NotNull;
 
 public class JenklintAction extends AnAction {
