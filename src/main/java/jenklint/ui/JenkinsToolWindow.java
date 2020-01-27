@@ -48,18 +48,26 @@ public class JenkinsToolWindow implements Disposable {
         contentManager.addContent(content);
         consoleView.print("STARTED!!!\n", ConsoleViewContentType.NORMAL_OUTPUT);
 
+    }
 
+    public void print(String message) {
+        consoleView.print("\n" + message, ConsoleViewContentType.NORMAL_OUTPUT);
     }
 
     private ActionToolbar createToolbar() {
         ActionManager actionManager = ActionManager.getInstance();
         DefaultActionGroup defaultActionGroup = new DefaultActionGroup();
-        defaultActionGroup.addAction(actionManager.getAction("JenkinsPlugin.pyjenklint"));
+        defaultActionGroup.addAction(actionManager.getAction("JenkinsPlugin.validate"));
+        defaultActionGroup.addAction(actionManager.getAction("JenkinsPlugin.consoleClear"));
         return actionManager.createActionToolbar(ActionPlaces.CHANGES_VIEW_TOOLBAR, defaultActionGroup, false);
     }
 
     @Override
     public void dispose() {
         Disposer.dispose(consoleView);
+    }
+
+    public void clear() {
+        consoleView.clear();
     }
 }
