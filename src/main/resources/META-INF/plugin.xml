@@ -16,11 +16,11 @@
     </extensions>
 
     <actions>
-        <action id="JenkinsPlugin.pyjenklint" class="jenklint.actions.JenklintAction" text="Validate" description="Run pyjenklint" icon="AllIcons.Actions.Execute">
-            <keyboard-shortcut first-keystroke="control shift J" second-keystroke="V" keymap="$default"/>
-            <add-to-group group-id="ToolsMenu" anchor="first"/>
-        </action>
-        <action id="JenkinsPlugin.validate" class="jenklint.actions.ValidateAction" text="Validate" description="Validate Jenkinsfile in your project" icon="AllIcons.Actions.Rerun"/>
+<!--        <action id="JenkinsPlugin.pyjenklint" class="jenklint.actions.JenklintAction" text="Validate" description="Run pyjenklint" icon="AllIcons.Actions.Execute">-->
+<!--            <keyboard-shortcut first-keystroke="control shift J" second-keystroke="V" keymap="$default"/>-->
+<!--            <add-to-group group-id="ToolsMenu" anchor="first"/>-->
+<!--        </action>-->
+        <action id="JenkinsPlugin.validate" class="jenklint.actions.ValidateAction" text="Validate" description="Validate Jenkinsfile in your project" icon="AllIcons.Actions.Execute"/>
         <action id="JenkinsPlugin.consoleClear" class="jenklint.actions.ClearConsoleAction" text="Clear Console" description="Clear the Jenkins console" icon="AllIcons.Actions.Close"/>
     </actions>
 </idea-plugin>

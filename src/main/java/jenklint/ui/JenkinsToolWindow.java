@@ -57,7 +57,6 @@ public class JenkinsToolWindow implements Disposable {
     private ActionToolbar createToolbar() {
         ActionManager actionManager = ActionManager.getInstance();
         DefaultActionGroup defaultActionGroup = new DefaultActionGroup();
-        defaultActionGroup.addAction(actionManager.getAction("JenkinsPlugin.pyjenklint"));
         defaultActionGroup.addAction(actionManager.getAction("JenkinsPlugin.validate"));
         defaultActionGroup.addAction(actionManager.getAction("JenkinsPlugin.consoleClear"));
         return actionManager.createActionToolbar(ActionPlaces.CHANGES_VIEW_TOOLBAR, defaultActionGroup, false);

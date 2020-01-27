@@ -22,30 +22,15 @@ import org.jetbrains.annotations.Nullable;
 
 public class Config implements Configurable {
     private JPanel rootPanel;
-    private TextFieldWithBrowseButton jenklintCommand;
     private JTextField jenkinsUrl;
     private TextFieldWithBrowseButton jenkinsFile;
     public static final String DISPLAY_NAME = "Jenklint";
     private Project project;
 
-    //    public Config() {
     public Config(@NotNull Project project) {
         this.project = project;
         jenkinsFile.setText(PropertiesComponent.getInstance(project).getValue("jenkinsfile"));
         jenkinsUrl.setText(PropertiesComponent.getInstance(project).getValue("jenkinsURL"));
-        jenklintCommand.setText(PropertiesComponent.getInstance().getValue("jenklint.command_path"));
-
-        jenklintCommand.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                final FileChooserDescriptor d = FileChooserDescriptorFactory.createSingleFileDescriptor();
-                VirtualFile initialFile = StringUtil.isNotEmpty(jenklintCommand.getText()) ? LocalFileSystem.getInstance().findFileByPath(jenklintCommand.getText()) : null;
-                VirtualFile file = FileChooser.chooseFile(d, project, initialFile);
-                if (file != null) {
-                    jenklintCommand.setText(file.getCanonicalPath());
-                }
-            }
-        });
 
         jenkinsUrl.addActionListener(new ActionListener() {
             @Override
@@ -86,7 +71,6 @@ public class Config implements Configurable {
     @Override
     public boolean isModified() {
         PropertiesComponent projectInstance = PropertiesComponent.getInstance(this.project);
-        PropertiesComponent defaultInstance = PropertiesComponent.getInstance();
         if (!jenkinsFile.getText().equals(projectInstance.getValue("jenkinsfile"))) {
             return true;
         }
@@ -95,16 +79,12 @@ public class Config implements Configurable {
             return true;
         }
 
-        if (!jenklintCommand.getText().equals(defaultInstance.getValue("jenklint.command_path"))) {
-            return true;
-        }
         return false;
     }
 
     @Override
     public void apply() throws ConfigurationException {
         PropertiesComponent.getInstance(project).setValue("jenkinsfile", jenkinsFile.getText());
-        PropertiesComponent.getInstance().setValue("jenklint.command_path", jenklintCommand.getText());
         PropertiesComponent.getInstance(project).setValue("jenkinsURL", jenkinsUrl.getText());
     }
 }
