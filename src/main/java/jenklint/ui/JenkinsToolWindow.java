@@ -48,11 +48,12 @@ public class JenkinsToolWindow implements Disposable {
         contentManager.addContent(content);
         consoleView.print("STARTED!!!\n", ConsoleViewContentType.NORMAL_OUTPUT);
 
+    }
 
+    public void print(String message) {
+        consoleView.print("\n" + message, ConsoleViewContentType.NORMAL_OUTPUT);
     }
-    public void print(String message){
-        consoleView.print("\n"+ message, ConsoleViewContentType.NORMAL_OUTPUT);
-    }
+
     private ActionToolbar createToolbar() {
         ActionManager actionManager = ActionManager.getInstance();
         DefaultActionGroup defaultActionGroup = new DefaultActionGroup();

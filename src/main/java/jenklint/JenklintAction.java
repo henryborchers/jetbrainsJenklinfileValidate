@@ -30,6 +30,7 @@ public class JenklintAction extends AnAction {
             jenklint = "/home/henry/.local/bin/jenklint";
 
         }
+
         PropertiesComponent projectInstance = PropertiesComponent.getInstance(project);
         String jenkinsUrl = projectInstance.getValue("jenkinsURL");
 
