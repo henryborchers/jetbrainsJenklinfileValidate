@@ -28,10 +28,12 @@ pipeline{
         stage("Run Tests"){
             steps{
                 sh label: 'Running tests', script: './gradlew test -w --warning-mode all '
+                sh label: 'Get Coverage Report', script: './gradlew jacocoTestReport -w --warning-mode all '
             }
             post{
                 always{
                     junit 'build/test-results/test/TEST*.xml'
+                    publishCoverage adapters: [coberturaAdapter('build/reports/jacoco/test/jacocoTestReport.xml')], sourceFileResolver: sourceFiles('NEVER_STORE')
                 }
             }
         }
