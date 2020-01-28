@@ -6,12 +6,12 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
-import jenklint.jenkinsFileFinder.FindInConfig;
-import jenklint.jenkinsFileFinder.FindInProject;
-import jenklint.jenkinsFileFinder.JenkinsFileFinderStrategy;
 import jenklint.JenkinsServer;
 import jenklint.JenkinsValidation;
 import jenklint.Jenkinsfile;
+import jenklint.jenkinsfilefinder.FindInConfig;
+import jenklint.jenkinsfilefinder.FindInProject;
+import jenklint.jenkinsfilefinder.JenkinsFileFinderStrategy;
 import jenklint.ui.JenkinsToolWindow;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,7 +23,6 @@ public class ValidateAction extends AnAction {
         if (project == null) {
             return;
         }
-        PropertiesComponent projectInstance = PropertiesComponent.getInstance(project);
         JenkinsToolWindow jenkinsToolWindow = ServiceManager.getService(project, JenkinsToolWindow.class);
         final VirtualFile jenkinsfFileFile = getJenkinsFile(project);
         if (jenkinsfFileFile == null) {
@@ -36,6 +35,7 @@ public class ValidateAction extends AnAction {
         }
         jenkinsfFileFile.refresh(false, false);
         final Jenkinsfile jenkinsfile = new Jenkinsfile(jenkinsfFileFile);
+        PropertiesComponent projectInstance = PropertiesComponent.getInstance(project);
         final String serverUrl = projectInstance.getValue("jenkinsURL");
         if (serverUrl == null) {
             jenkinsToolWindow.print("Jenkins server URL not set");
@@ -55,13 +55,13 @@ public class ValidateAction extends AnAction {
 
     private VirtualFile getJenkinsFile(Project project) {
         JenkinsFileFinderStrategy[] strategies = {
-                new FindInConfig(),
-                new FindInProject(),
+            new FindInConfig(),
+            new FindInProject(),
         };
 
-        for( JenkinsFileFinderStrategy strategy: strategies) {
+        for (JenkinsFileFinderStrategy strategy: strategies) {
             VirtualFile jenkinsfile = strategy.locate(project);
-            if (jenkinsfile == null){
+            if (jenkinsfile == null) {
                 continue;
             }
             return jenkinsfile;

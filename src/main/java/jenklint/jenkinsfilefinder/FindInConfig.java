@@ -1,4 +1,4 @@
-package jenklint.jenkinsFileFinder;
+package jenklint.jenkinsfilefinder;
 
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.project.Project;

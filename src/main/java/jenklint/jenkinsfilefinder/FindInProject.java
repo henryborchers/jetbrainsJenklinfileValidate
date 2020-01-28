@@ -1,4 +1,4 @@
-package jenklint.jenkinsFileFinder;
+package jenklint.jenkinsfilefinder;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ProjectRootManager;
