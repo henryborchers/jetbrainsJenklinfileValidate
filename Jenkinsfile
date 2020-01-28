@@ -33,6 +33,7 @@ pipeline{
             post{
                 always{
                     junit 'build/test-results/test/TEST*.xml'
+                    sh "ls -R build/reports/jacoco"
                     publishCoverage adapters: [coberturaAdapter('build/reports/jacoco/test/jacocoTestReport.xml')], sourceFileResolver: sourceFiles('NEVER_STORE')
                 }
             }
