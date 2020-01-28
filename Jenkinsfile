@@ -33,8 +33,8 @@ pipeline{
             post{
                 always{
                     junit 'build/test-results/test/TEST*.xml'
-                    publishCoverage adapters: [coberturaAdapter('build/reports/jacoco/test/jacocoTestReport.xml')]
-                    archiveArtifacts 'build/reports/jacoco/test/jacocoTestReport.xml'
+                    publishCoverage adapters: [jacocoAdapter('build/reports/jacoco/test/jacocoTestReport.xml')]
+//                     archiveArtifacts 'build/reports/jacoco/test/jacocoTestReport.xml'
                 }
             }
         }
