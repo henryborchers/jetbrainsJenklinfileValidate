@@ -2,6 +2,7 @@ pipeline{
     agent {
         docker {
             image 'gradle'
+            label 'linux'
         }
     }
     stages{
