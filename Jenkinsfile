@@ -3,6 +3,7 @@ pipeline{
         docker {
             image 'gradle'
             label 'linux'
+            args '-v gradle:/opt/gradle'
         }
     }
     stages{
