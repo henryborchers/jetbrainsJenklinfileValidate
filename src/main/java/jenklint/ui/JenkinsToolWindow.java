@@ -51,7 +51,7 @@ public class JenkinsToolWindow implements Disposable {
     }
 
     public void print(String message) {
-        consoleView.print("\n" + message, ConsoleViewContentType.NORMAL_OUTPUT);
+        consoleView.print(message + "\n" , ConsoleViewContentType.NORMAL_OUTPUT);
     }
 
     private ActionToolbar createToolbar() {
