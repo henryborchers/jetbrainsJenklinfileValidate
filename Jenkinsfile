@@ -18,7 +18,7 @@ pipeline{
             parallel{
                 stage("Build Plugin"){
                     steps{
-                        sh label: 'Building plugin', script: './gradlew buildPlugin  -w --warning-mode all | tee gradle.build.log'
+                        sh label: 'Building plugin', script: './gradlew buildPlugin  -w --warning-mode all'
                     }
                 }
                 stage("Build Javadocs"){
