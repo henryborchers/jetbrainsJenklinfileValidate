@@ -78,5 +78,8 @@ pipeline{
         always{
             sh "./gradlew clean"
         }
+        success{
+            archiveArtifacts 'build/distributions/*.zip,build/distributions/*.jar'
+        }
     }
 }
