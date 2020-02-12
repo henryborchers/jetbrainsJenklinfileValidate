@@ -22,13 +22,13 @@
 <!--        </action>-->
         <action id="JenkinsPlugin.validate" class="jenklint.actions.ValidateAction" text="Validate" description="Validate Jenkinsfile in your project" icon="AllIcons.Actions.Execute"/>
         <action id="JenkinsPlugin.consoleClear" class="jenklint.actions.ClearConsoleAction" text="Clear Console" description="Clear the Jenkins console" icon="AllIcons.Actions.Close"/>
-        <action id="generateNewStage" class="jenklint.actions.GenerateNewStage" text="Pipeline Stage"
-                description="Generate a new Stage">
-            <add-to-group group-id="GenerateGroup" anchor="last"/>
-        </action>
+<!--        <action id="generateNewStage" class="jenklint.actions.GenerateNewStage" text="Pipeline Stage"-->
+<!--                description="Generate a new Stage">-->
+<!--            <add-to-group group-id="GenerateGroup" anchor="last"/>-->
+<!--        </action>-->
         <action id="AnalyzeJJenkinsFile" class="jenklint.actions.jenklins.actions.AnalyzeJenkinsfile"
                 text="Anaylize Jenkinsfile" description="dddd">
-<!--            <add-to-group group-id="AnalyzeActions" anchor="first"/>-->
+            <add-to-group group-id="AnalyzeActions" anchor="first"/>
         </action>
     </actions>
 </idea-plugin>
