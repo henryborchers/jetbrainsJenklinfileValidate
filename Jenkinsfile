@@ -75,8 +75,14 @@ pipeline{
         }
     }
     post{
-        always{
+        cleanup{
             sh "./gradlew clean"
+            cleanWs(
+                deleteDirs: true,
+                patterns: [
+                    [pattern: '.gradle/', type: 'INCLUDE']
+                ]
+            )
         }
         success{
             archiveArtifacts 'build/distributions/*.zip,build/distributions/*.jar'
