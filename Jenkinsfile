@@ -5,6 +5,9 @@ pipeline{
             label 'linux'
         }
     }
+    options {
+      buildDiscarder logRotator(artifactNumToKeepStr: '10')
+    }
     stages{
         stage("Configure"){
             steps{
