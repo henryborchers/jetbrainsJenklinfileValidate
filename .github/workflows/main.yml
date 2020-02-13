@@ -8,10 +8,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+      - uses: actions/checkout@v2
+
+      - name: Cache gradle dependendies
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-gradle-deps
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/build.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Branch name
+        run: echo running on branch ${GITHUB_REF##*/}
+      - name: Build plugin
+        run: ./gradlew buildPlugin  -w --warning-mode all
+      - name: Run SonarQube
+        run: ./gradlew jacocoTestReport sonarqube -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.verbose=true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

@@ -19,7 +19,7 @@ public class JenkinsfileTest extends BasePlatformTestCase {
 
         Jenkinsfile j = new Jenkinsfile(jenkinsfile);
         String data = j.data();
-        assert data.contentEquals(samplePipeline);
+        assertTrue(data.contentEquals(samplePipeline));
     }
 
     @Override
