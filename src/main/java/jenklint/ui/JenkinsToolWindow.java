@@ -64,7 +64,9 @@ public class JenkinsToolWindow implements Disposable {
 
     @Override
     public void dispose() {
-        Disposer.dispose(consoleView);
+        if (consoleView != null){
+            Disposer.dispose(consoleView);
+        }
     }
 
     public void clear() {

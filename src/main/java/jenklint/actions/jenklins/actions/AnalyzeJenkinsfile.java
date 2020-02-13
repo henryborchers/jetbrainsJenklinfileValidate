@@ -27,6 +27,7 @@ public class AnalyzeJenkinsfile extends AnAction {
             return;
         }
         CommandProcessor commandProcessor = CommandProcessor.getInstance();
+//        TODO: make sure that the console opens
         commandProcessor.executeCommand(project, new Runnable() {
             @Override
             public void run() {
