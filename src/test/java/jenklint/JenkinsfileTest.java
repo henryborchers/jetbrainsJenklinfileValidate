@@ -15,7 +15,7 @@ public class JenkinsfileTest extends BasePlatformTestCase {
 
     @Test
     public void testData(){
-        assert jenkinsfile!=null;
+        assert jenkinsfile != null;
 
         Jenkinsfile j = new Jenkinsfile(jenkinsfile);
         String data = j.data();
@@ -27,7 +27,7 @@ public class JenkinsfileTest extends BasePlatformTestCase {
         super.setUp();
         jenkinsfile = this.myFixture.getTempDirFixture().createFile("Jenkinsfile");
 
-        ApplicationManager.getApplication().runWriteAction(()->{
+        ApplicationManager.getApplication().runWriteAction(() -> {
             try {
                 jenkinsfile.setBinaryContent(samplePipeline.getBytes());
                 jenkinsfile.refresh(false, false);
