@@ -11,10 +11,10 @@ import java.nio.charset.StandardCharsets;
 
 public class JenkinsfileTest extends BasePlatformTestCase {
     private VirtualFile jenkinsfile;
-    final private String samplePipeline = "MY pipeline data";
+    private final String samplePipeline = "MY pipeline data";
 
     @Test
-    public void testData(){
+    public void testData() {
         assert jenkinsfile != null;
 
         Jenkinsfile j = new Jenkinsfile(jenkinsfile);
@@ -31,7 +31,7 @@ public class JenkinsfileTest extends BasePlatformTestCase {
             try {
                 jenkinsfile.setBinaryContent(samplePipeline.getBytes());
                 jenkinsfile.refresh(false, false);
-            } catch (IOException e){
+            } catch (IOException e) {
                 return;
             }
         });
