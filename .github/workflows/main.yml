@@ -22,7 +22,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Branch name
-        run: git status
+        run: git pull
 #        run: echo running on branch ${GITHUB_REF##*/}
       - name: Build plugin
         run: ./gradlew buildPlugin  -w --warning-mode all
