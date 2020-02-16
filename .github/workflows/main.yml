@@ -17,11 +17,9 @@ jobs:
           cache-name: cache-gradle-deps
         with:
           path: ~/.gradle/caches
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/build.gradle') }}
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+            ${{ runner.os }}-gradle-
       #- name: Branch name
       #  run: git pull
 #        run: echo running on branch ${GITHUB_REF##*/}
