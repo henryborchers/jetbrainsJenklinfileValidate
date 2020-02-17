@@ -1,9 +1,11 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '0.4.15'
+    id 'org.jetbrains.intellij' version '0.4.16'
     id 'checkstyle'
-    id "com.github.spotbugs" version "3.0.0"
     id "de.undercouch.download" version "3.4.2"
+    id 'jacoco'
+    id "org.sonarqube" version "2.8"
+    id "com.github.spotbugs" version "3.0.0"
 }
 
 group 'org.example'
@@ -33,5 +35,17 @@ test {
     reports {
         junitXml.enabled = true
         html.enabled = false
+    }
+}
+sonarqube {
+    properties {
+        property "sonar.projectKey", "henryborchers_jetbrainsJenklinfileValidate"
+        property "sonar.organization", "henryborchers-github"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+jacocoTestReport {
+    reports {
+        xml.enabled true
     }
 }

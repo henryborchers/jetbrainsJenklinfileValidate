@@ -1,0 +1,30 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          git fetch --prune --unshallow
+      - name: Cache gradle dependendies
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-gradle-deps
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: Build plugin
+        run: ./gradlew build buildPlugin -w --warning-mode all
+      - name: Run tests
+        run: ./gradlew test -w --warning-mode all
+      - name: Run SonarQube
+        run: ./gradlew jacocoTestReport sonarqube -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.verbose=true  -i
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
