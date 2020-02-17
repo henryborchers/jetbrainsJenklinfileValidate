@@ -42,7 +42,6 @@ sonarqube {
         property "sonar.projectKey", "henryborchers_jetbrainsJenklinfileValidate"
         property "sonar.organization", "henryborchers-github"
         property "sonar.host.url", "https://sonarcloud.io"
-        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
     }
 }
 jacocoTestReport {
