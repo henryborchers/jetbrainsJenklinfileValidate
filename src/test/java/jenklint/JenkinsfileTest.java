@@ -2,12 +2,12 @@ package jenklint;
 
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.testFramework.fixtures.*;
+import com.intellij.testFramework.fixtures.BasePlatformTestCase;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 public class JenkinsfileTest extends BasePlatformTestCase {
     private VirtualFile jenkinsfile;
@@ -25,11 +25,10 @@ public class JenkinsfileTest extends BasePlatformTestCase {
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        jenkinsfile = this.myFixture.getTempDirFixture().createFile("Jenkinsfile");
 
         ApplicationManager.getApplication().runWriteAction(() -> {
             try {
-                jenkinsfile.setBinaryContent(samplePipeline.getBytes());
+                jenkinsfile = this.myFixture.getTempDirFixture().createFile("Jenkinsfile", samplePipeline);
                 jenkinsfile.refresh(false, false);
             } catch (IOException e) {
                 return;
