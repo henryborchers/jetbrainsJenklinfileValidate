@@ -10,6 +10,7 @@ import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.ui.Messages;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
 import jenklint.JenkinsServer;
@@ -52,6 +53,7 @@ public class AnalyzeJenkinsfile extends AnAction {
 
                 final String serverUrl = projectInstance.getValue("jenkinsURL");
                 if (serverUrl == null) {
+                    Messages.showMessageDialog(project, "Jenkins server URL not set", "Error", Messages.getInformationIcon());
                     jenkinsToolWindow.print("Jenkins server URL not set");
                     return;
                 }

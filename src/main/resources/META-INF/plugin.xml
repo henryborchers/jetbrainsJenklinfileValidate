@@ -27,7 +27,7 @@
 <!--            <add-to-group group-id="GenerateGroup" anchor="last"/>-->
 <!--        </action>-->
         <action id="AnalyzeJJenkinsFile" class="jenklint.actions.jenklins.actions.AnalyzeJenkinsfile"
-                text="Anaylize Jenkinsfile" description="dddd">
+                text="Anaylize Jenkinsfile" description="Anaylize Jenkinsfile located in your project">
             <add-to-group group-id="InspectCodeGroup" anchor="first"/>
 <!--            <add-to-group group-id="AnalyzeActions" anchor="first"/>-->
         </action>
