@@ -40,13 +40,13 @@ public class AnalyzeJenkinsfile extends AnAction {
 
                 PsiDocumentManager psiDocumentManager = PsiDocumentManager.getInstance(project);
                 final Document jenkinsfileDocument = psiDocumentManager.getDocument(jenkinsfile);
-                if(jenkinsfileDocument == null){
+                if(jenkinsfileDocument == null) {
                     return;
                 }
 
                 psiDocumentManager.commitAllDocuments();
                 JenkinsToolWindow jenkinsToolWindow = ServiceManager.getService(project, JenkinsToolWindow.class);
-                if (jenkinsToolWindow == null){
+                if (jenkinsToolWindow == null) {
                     return;
                 }
                 PropertiesComponent projectInstance = PropertiesComponent.getInstance(project);
@@ -76,11 +76,11 @@ public class AnalyzeJenkinsfile extends AnAction {
         PsiFile jenkinsfile  = e.getData(LangDataKeys.PSI_FILE);
         Editor editor = e.getData(PlatformDataKeys.EDITOR);
 
-        if(jenkinsfile == null || editor == null){
+        if (jenkinsfile == null || editor == null) {
             e.getPresentation().setEnabled(false);
             return;
         }
-        if (!jenkinsfile.getName().equals("Jenkinsfile")){
+        if (!jenkinsfile.getName().equals("Jenkinsfile")) {
             e.getPresentation().setEnabled(false);
             return;
         }
