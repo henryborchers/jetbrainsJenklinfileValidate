@@ -28,19 +28,18 @@ public class AnalyzeJenkinsfile extends AnAction {
             return;
         }
         CommandProcessor commandProcessor = CommandProcessor.getInstance();
-//        TODO: make sure that the console opens
         commandProcessor.executeCommand(project, new Runnable() {
             @Override
             public void run() {
-                PsiFile jenkinsfile  = e.getData(LangDataKeys.PSI_FILE);
+                PsiFile jenkinsfile = e.getData(LangDataKeys.PSI_FILE);
 
-                if(jenkinsfile == null){
+                if (jenkinsfile == null) {
                     return;
                 }
 
                 PsiDocumentManager psiDocumentManager = PsiDocumentManager.getInstance(project);
                 final Document jenkinsfileDocument = psiDocumentManager.getDocument(jenkinsfile);
-                if(jenkinsfileDocument == null) {
+                if (jenkinsfileDocument == null) {
                     return;
                 }
 

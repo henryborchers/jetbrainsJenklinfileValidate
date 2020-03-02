@@ -52,7 +52,7 @@ public class ValidateAction extends AnAction {
             public void run() {
                 FileDocumentManager fileDocumentManager = FileDocumentManager.getInstance();
                 final Document jenkinsfileDocument = fileDocumentManager.getDocument(jenkinsfFileFile);
-                if (jenkinsfileDocument == null){
+                if (jenkinsfileDocument == null) {
                     return;
                 }
                 JenkinsServer server = new JenkinsServer(serverUrl);
