@@ -61,14 +61,14 @@ public class JenkinsToolWindow implements Disposable {
             String message = messageQueue.remove();
             sb.append(message).append("\n");
         }
-        consoleView.print(sb.toString() , ConsoleViewContentType.NORMAL_OUTPUT);
+        consoleView.print(sb.toString(), ConsoleViewContentType.NORMAL_OUTPUT);
     }
 
     public void print(String message) {
         if (consoleView == null) {
             messageQueue.add(message);
         } else {
-            consoleView.print(message + "\n" , ConsoleViewContentType.NORMAL_OUTPUT);
+            consoleView.print(message + "\n", ConsoleViewContentType.NORMAL_OUTPUT);
         }
     }
 
@@ -82,7 +82,7 @@ public class JenkinsToolWindow implements Disposable {
 
     @Override
     public void dispose() {
-        if (consoleView != null){
+        if (consoleView != null) {
             Disposer.dispose(consoleView);
         }
     }

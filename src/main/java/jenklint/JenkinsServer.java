@@ -15,7 +15,7 @@ public class JenkinsServer {
 
         this.serverUrl = serverUrl;
     }
-    public JenkinsValidation validateDocument(Document jenkinsfileDocument){
+    public JenkinsValidation validateDocument(Document jenkinsfileDocument) {
         String response = "";
         JenkinsValidation result;
         boolean isValid;
