@@ -1,8 +1,9 @@
 package jenklint;
 
+import com.intellij.openapi.editor.Document;
+
 import java.io.IOException;
 
-import com.intellij.openapi.editor.Document;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Form;
 import org.apache.http.client.fluent.Request;
@@ -15,6 +16,7 @@ public class JenkinsServer {
 
         this.serverUrl = serverUrl;
     }
+
     public JenkinsValidation validateDocument(Document jenkinsfileDocument) {
         String response = "";
         JenkinsValidation result;
