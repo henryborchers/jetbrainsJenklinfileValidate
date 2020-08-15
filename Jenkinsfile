@@ -1,8 +1,9 @@
 pipeline{
     agent {
-        docker {
-            image 'gradle'
+        dockerfile {
+            filename 'ci/docker/gradle/Dockerfile'
             label 'linux'
+            additionalBuildArgs '--build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)'
         }
     }
     stages{
