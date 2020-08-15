@@ -8,6 +8,7 @@ pipeline{
     stages{
         stage("Configure"){
             steps{
+                sh "printenv"
                 sh label: 'Configure', script: './gradlew --info --warning-mode all'
             }
         }
