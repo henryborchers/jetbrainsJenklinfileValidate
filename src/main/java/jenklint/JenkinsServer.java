@@ -1,5 +1,7 @@
 package jenklint;
 
+import com.intellij.openapi.editor.Document;
+
 import java.io.IOException;
 
 import org.apache.http.client.fluent.Content;
@@ -13,6 +15,27 @@ public class JenkinsServer {
     public JenkinsServer(String serverUrl) {
 
         this.serverUrl = serverUrl;
+    }
+
+    public JenkinsValidation validateDocument(Document jenkinsfileDocument) {
+        String response = "";
+        JenkinsValidation result;
+        boolean isValid;
+        try {
+            response = requestServerValidation(jenkinsfileDocument.getText());
+            if (response.contains("Jenkinsfile successfully validated")) {
+                isValid = true;
+            } else {
+                isValid = false;
+            }
+        } catch (IOException ex) {
+            JenkinsValidation errorResult = new JenkinsValidation(false);
+            errorResult.setResponseText("Unknown error when validating Jenkinsfile");
+            return errorResult;
+        }
+        result = new JenkinsValidation(isValid);
+        result.setResponseText(response);
+        return result;
     }
 
     public JenkinsValidation validate(Jenkinsfile jenkinsfile) {

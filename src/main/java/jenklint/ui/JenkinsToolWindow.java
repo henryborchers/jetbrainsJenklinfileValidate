@@ -17,6 +17,9 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentManager;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import javax.swing.JPanel;
 
 import org.jetbrains.annotations.NotNull;
@@ -26,6 +29,11 @@ public class JenkinsToolWindow implements Disposable {
     private JPanel panel1;
     private ConsoleView consoleView;
     private ContentManager contentManager;
+    private Queue<String> messageQueue;
+
+    public JenkinsToolWindow() {
+        messageQueue = new LinkedList<String>();
+    }
 
     void initToolWindow(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         contentManager = toolWindow.getContentManager();
@@ -48,10 +56,20 @@ public class JenkinsToolWindow implements Disposable {
         contentManager.addContent(content);
         consoleView.print("STARTED!!!\n", ConsoleViewContentType.NORMAL_OUTPUT);
 
+        StringBuilder sb = new StringBuilder();
+        while (!messageQueue.isEmpty()) {
+            String message = messageQueue.remove();
+            sb.append(message).append("\n");
+        }
+        consoleView.print(sb.toString(), ConsoleViewContentType.NORMAL_OUTPUT);
     }
 
     public void print(String message) {
-        consoleView.print("\n" + message, ConsoleViewContentType.NORMAL_OUTPUT);
+        if (consoleView == null) {
+            messageQueue.add(message);
+        } else {
+            consoleView.print(message + "\n", ConsoleViewContentType.NORMAL_OUTPUT);
+        }
     }
 
     private ActionToolbar createToolbar() {
@@ -64,10 +82,14 @@ public class JenkinsToolWindow implements Disposable {
 
     @Override
     public void dispose() {
-        Disposer.dispose(consoleView);
+        if (consoleView != null) {
+            Disposer.dispose(consoleView);
+        }
     }
 
     public void clear() {
-        consoleView.clear();
+        if (this.consoleView != null) {
+            consoleView.clear();
+        }
     }
 }

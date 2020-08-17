@@ -7,6 +7,9 @@ pipeline{
             args '--mount source=gradle-cache-jenkinsfile-validate,target=/home/user/.gradle'
         }
     }
+    options {
+      buildDiscarder logRotator(artifactNumToKeepStr: '10')
+    }
     stages{
         stage("Configure"){
             steps{
@@ -17,7 +20,7 @@ pipeline{
             parallel{
                 stage("Build Plugin"){
                     steps{
-                        sh label: 'Building plugin', script: './gradlew buildPlugin  -w --warning-mode all | tee gradle.build.log'
+                        sh label: 'Building plugin', script: './gradlew buildPlugin  -w --warning-mode all'
                     }
                 }
                 stage("Build Javadocs"){
@@ -33,7 +36,7 @@ pipeline{
             }
             post{
                 always{
-                    junit 'build/test-results/test/TEST*.xml'
+                    junit allowEmptyResults: true, testResults: 'build/test-results/test/TEST*.xml'
                 }
             }
         }
@@ -74,8 +77,17 @@ pipeline{
         }
     }
     post{
-        always{
+        cleanup{
             sh "./gradlew clean"
+            cleanWs(
+                deleteDirs: true,
+                patterns: [
+                    [pattern: '.gradle/', type: 'INCLUDE']
+                ]
+            )
+        }
+        success{
+            archiveArtifacts 'build/distributions/*.zip,build/distributions/*.jar'
         }
     }
 }
